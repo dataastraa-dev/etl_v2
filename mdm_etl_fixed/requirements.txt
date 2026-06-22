@@ -1,0 +1,17 @@
+# Web Framework & Server
+Flask
+gunicorn
+
+# Database & ORM
+SQLAlchemy
+psycopg2-binary
+alembic
+
+# Data Processing
+pandas
+numpy
+
+# Environment & Utilities
+python-dotenv
+watchdog
+requests

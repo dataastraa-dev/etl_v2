@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: mdm-etl-backend
+    env: python
+    region: ohio # You can change this to your preferred Render region
+    plan: free   # Uses the Render Free Tier for the web service
+    buildCommand: "pip install -r requirements.txt && alembic upgrade head"
+    startCommand: "gunicorn 'app:create_app()'"
+    envVars:
+      # Application Environment
+      - key: ENVIRONMENT
+        value: "PRODUCTION"
+      
+      # Database Connection (Aiven)
+      - key: ETL_DATABASE_URL
+        sync: false # 'false' means Render will prompt you to enter this securely in their dashboard
+      
+      # Processing Tuning
+      - key: CHUNK_SIZE_MB
+        value: "64"
+      - key: MAX_WORKERS
+        value: "4"
